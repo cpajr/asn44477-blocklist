@@ -25,7 +25,7 @@ jobs:
       - name: Create output file
         id: generate_output
         run: |
-          output=$(python generate_list.py)
+          output=$(python asn44477-prefixes.py)
           echo "::set-output name=result::$output"
 
       - name: Save output to file
