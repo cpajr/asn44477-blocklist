@@ -32,6 +32,6 @@ jobs:
           git config --local user.name "zcharlesallen"
           git add output.txt
           git commit -m "Generate list"
-          git push https://$GH_TOKEN@github.com/zcharlesallen/test-asn44477.git HEAD:main
+          git push https://zcharlesallen:$GH_TOKEN@github.com/zcharlesallen/test-asn44477.git HEAD:main
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
