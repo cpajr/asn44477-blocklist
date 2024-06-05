@@ -26,10 +26,10 @@ jobs:
         id: generate_output
         run: |
           {
-            echo 'IP_ADDR_LIST << EOF'
+            echo 'IP_ADDR_LIST<<EOF'
             python asn44477-prefixes.py
             echo EOF
-          } >> "$GITHUB_ENV"
+          } >> "$GITHUB_OUTPUT"
 
       - name: Save output to file
         env:
