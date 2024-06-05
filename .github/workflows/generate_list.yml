@@ -22,11 +22,14 @@ jobs:
       - name: Install dependencies
         run: pip install bgpstuff
 
-      - name: Execute Python script
-        run: python asn44477-prefixes.py
-
       - name: Create output file
-        run: echo "${{ steps.execute.outputs.result }}" > output.txt
+        id: generate_output
+        run: |
+          output=$(python generate_list.py)
+          echo "::set-output name=result::$output"
+
+      - name: Save output to file
+        run: echo "${{ steps.generate_output.outputs.result }}" > output.txt
 
       - name: Commit and push changes
         run: |
