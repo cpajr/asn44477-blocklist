@@ -25,11 +25,16 @@ jobs:
       - name: Create output file
         id: generate_output
         run: |
-          output=$(python asn44477-prefixes.py)
-          echo "::set-output name=result::$output"
+          {
+            echo 'IP_ADDR_LIST << EOF'
+            python asn44477-prefixes.py
+            echo EOF
+          } >> "$GITHUB_ENV"
 
       - name: Save output to file
-        run: echo "${{ steps.generate_output.outputs.result }}" > output.txt
+        env:
+          IP_ADDR_LIST: ${{steps.generate_output.outputs.IP_ADDR_LIST}}
+        run: echo "$IP_ADDR_LIST" > output.txt
 
       - name: Commit and push changes
         run: |
