@@ -38,8 +38,8 @@ jobs:
 
       - name: Commit and push changes
         run: |
-          git config --global user.email "charles.allen@zagg.com"
-          git config --global user.name "Charles Allen"
+          git config --global user.email "action@github.com"
+          git config --global user.name "GitHub Action"
           git add output.txt
           git commit -m "Generate list"
           git push
