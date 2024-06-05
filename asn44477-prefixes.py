@@ -9,5 +9,5 @@ if c.sourced:
     output = ""
     for prefix in c.sourced:
         if ipaddress.ip_network(prefix).version == 4:
-            output += prefix + "\n"
+            output += str(prefix) + "\n"
     sys.stdout.write(output)
