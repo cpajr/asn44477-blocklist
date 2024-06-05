@@ -1,0 +1,35 @@
+name: Generate List
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.x
+
+      - name: Install dependencies
+        run: pip install bgpstuff
+
+      - name: Execute Python script
+        run: python asn44477-prefixes.py
+
+      - name: Create output file
+        run: echo "${{ steps.execute.outputs.result }}" > output.txt
+
+      - name: Commit and push changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add output.txt
+          git commit -m "Generate list"
+          git push
