@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main
+permissions:
+  contents: write
 
 jobs:
   generate:
@@ -28,10 +30,10 @@ jobs:
 
       - name: Commit and push changes
         run: |
-          git config --local user.email "charles.allen@zagg.com"
-          git config --local user.name "zcharlesallen"
+          git config --global user.email "charles.allen@zagg.com"
+          git config --global user.name "Charles Allen"
           git add output.txt
           git commit -m "Generate list"
-          git push https://$GH_TOKEN@github.com/zcharlesallen/test-asn44477.git HEAD:main
+          git push
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
